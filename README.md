@@ -29,8 +29,8 @@ Anything else: tell your assistant to fetch `https://leafphp.dev/ai/SKILL.md` be
 
 ## What is in here
 
-- `SKILL.md`: when to trigger, Leaf 5 entry points, CLI, conventions, and the rules the agent follows.
-- `references/`: one file per area (routing, auth, database, request, response, middleware, MVC, views, mail, security and more). The agent reads these on demand instead of carrying all of Leaf in context.
+- `SKILL.md` covers when to trigger, the Leaf 5 entry points and CLI, plus the rules the agent follows.
+- `references/` has one file per area, from routing and auth through to mail and security. The agent reads these on demand instead of carrying all of Leaf in context.
 - `examples/auth-api`: a working register, login and protected route in one file. CI runs it on every push, so the thing we show agents actually runs.
 
 ## How it stays current
@@ -47,7 +47,7 @@ Then open your agent with the skill installed and ask for the same thing in plai
 
 ## See also
 
-- [AI in Leaf](https://leafphp.dev/docs/ai) for the full story: llms.txt, the skill and `.leaf/CONTEXT.md`.
+- [AI in Leaf](https://leafphp.dev/docs/ai) tells the full story of llms.txt, the skill and `.leaf/CONTEXT.md`.
 - [llms.txt](https://leafphp.dev/llms.txt), the compressed reference for models.
 - [kata-skill](https://github.com/leafsphp/kata-skill), the copy linter skill we use on everything Leaf writes.
 
