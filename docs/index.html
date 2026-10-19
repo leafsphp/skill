@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Leaf skill: Leaf 5 for coding agents</title>
+<meta name="description" content="One command and Claude Code, Codex, Gemini CLI or Cursor builds with Leaf 5 the way a Leaf developer would.">
+<meta property="og:title" content="Leaf skill: Leaf 5 for coding agents">
+<meta property="og:description" content="npx skills add leafsphp/skill. Your agent gets the real Leaf 5 API, the entry points, and the conventions. Synced from leafphp.dev every morning.">
+<meta property="og:url" content="https://leafsphp.github.io/skill/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Inter:wght@400;450;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAF7F2; --panel: #FFFFFF; --panel-2: #F6F1EA; --line: #E8E0D8;
+    --ink: #1B1612; --ink-2: #4A423B; --ink-3: #857A70;
+    --accent: #F09A55; --accent-deep: #D9752C; --accent-soft: #FFF4EC;
+    --code-bg: #1E1915; --code-ink: #F3EAD9; --code-dim: #9B8E80; --code-key: #FFB27A; --code-str: #C9E8A9; --code-fn: #8FD3FF;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 450 17px/1.6 Inter, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: var(--accent-deep); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  h1, h2, h3 { font-family: "Bricolage Grotesque", Inter, sans-serif; font-weight: 600; letter-spacing: -0.02em; margin: 0; }
+  code, pre, kbd { font-family: "DM Mono", ui-monospace, monospace; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+  header { padding: 22px 0; border-bottom: 1px solid var(--line); }
+  header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .brand { display: flex; align-items: center; gap: 10px; font-family: "Bricolage Grotesque", sans-serif; font-weight: 700; color: var(--ink); font-size: 18px; }
+  .brand span { color: var(--ink-3); font-weight: 500; }
+  nav a { color: var(--ink-2); margin-left: 22px; font-size: 15px; }
+  .hero { padding: 88px 0 56px; }
+  .eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent-deep); background: var(--accent-soft); border: 1px solid #F7DCC6; padding: 6px 12px; border-radius: 999px; }
+  h1 { font-size: clamp(40px, 6vw, 72px); line-height: 1.02; margin: 22px 0 18px; max-width: 860px; }
+  h1 em { font-style: normal; color: var(--accent-deep); }
+  .lede { font-size: 20px; color: var(--ink-2); max-width: 680px; margin: 0 0 34px; }
+  .cmd { display: inline-flex; align-items: center; gap: 14px; background: var(--code-bg); color: var(--code-ink); padding: 16px 20px; border-radius: 14px; font-size: 17px; box-shadow: 0 18px 40px -22px rgba(27,22,18,.45); }
+  .cmd .dollar { color: var(--code-dim); }
+  .cmd button { background: #2A231E; color: var(--code-ink); border: 1px solid #3A312A; padding: 6px 12px; border-radius: 8px; font: 500 13px Inter, sans-serif; cursor: pointer; }
+  .cmd button:hover { background: #352C25; }
+  .sub { margin: 14px 0 0; color: var(--ink-3); font-size: 15px; }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 56px; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 18px; padding: 24px; }
+  .card h3 { font-size: 20px; margin-bottom: 8px; }
+  .card p { margin: 0; color: var(--ink-2); font-size: 16px; }
+  section { padding: 64px 0; border-top: 1px solid var(--line); }
+  h2 { font-size: clamp(28px, 3.6vw, 40px); margin-bottom: 10px; }
+  .intro { color: var(--ink-2); max-width: 680px; margin: 0 0 28px; font-size: 18px; }
+  .split { display: grid; grid-template-columns: 1.1fr .9fr; gap: 28px; align-items: start; }
+  pre { margin: 0; background: var(--code-bg); color: var(--code-ink); padding: 22px 24px; border-radius: 16px; overflow: auto; font-size: 14px; line-height: 1.6; }
+  .k { color: var(--code-key); } .s { color: var(--code-str); } .f { color: var(--code-fn); } .c { color: var(--code-dim); }
+  .prompt { background: var(--panel-2); border: 1px solid var(--line); border-radius: 16px; padding: 22px 24px; }
+  .prompt .label { font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 10px; }
+  .prompt blockquote { margin: 0 0 16px; font-size: 18px; line-height: 1.5; color: var(--ink); font-family: "Bricolage Grotesque", sans-serif; font-weight: 500; }
+  .prompt p { margin: 0; color: var(--ink-2); font-size: 15px; }
+  table { width: 100%; border-collapse: collapse; background: var(--panel); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; font-size: 15px; }
+  th, td { text-align: left; padding: 14px 18px; border-bottom: 1px solid var(--line); }
+  th { background: var(--panel-2); font-weight: 600; color: var(--ink-2); font-size: 13px; letter-spacing: .04em; text-transform: uppercase; }
+  tr:last-child td { border-bottom: 0; }
+  td code { background: var(--panel-2); padding: 2px 7px; border-radius: 6px; font-size: 13.5px; }
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .step .n { font-family: "DM Mono", monospace; color: var(--accent-deep); font-size: 13px; margin-bottom: 8px; }
+  footer { padding: 40px 0 60px; border-top: 1px solid var(--line); color: var(--ink-3); font-size: 15px; }
+  footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  @media (max-width: 820px) { .grid, .split, .steps { grid-template-columns: 1fr; } .hero { padding: 56px 0 40px; } nav a { margin-left: 14px; } }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <a class="brand" href="https://leafphp.dev">🍁 Leaf <span>/ skill</span></a>
+    <nav>
+      <a href="#install">Install</a>
+      <a href="#example">Example</a>
+      <a href="https://github.com/leafsphp/skill">GitHub</a>
+      <a href="https://leafphp.dev/docs/ai">Docs</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap hero">
+    <span class="eyebrow">For Claude Code, Codex, Gemini CLI, Cursor</span>
+    <h1>A backend your agent <em>knows cold.</em></h1>
+    <p class="lede">One command and your coding agent builds with Leaf 5 the way a Leaf developer would. The real API, the right entry point, the conventions, and none of the boilerplate it would otherwise invent.</p>
+    <div class="cmd"><span class="dollar">$</span><code id="cmd">npx skills add leafsphp/skill</code><button onclick="navigator.clipboard.writeText(document.getElementById('cmd').textContent);this.textContent='Copied'">Copy</button></div>
+    <p class="sub">Synced from <a href="https://leafphp.dev/ai/SKILL.md">leafphp.dev/ai</a> every morning. MIT.</p>
+
+    <div class="grid">
+      <div class="card"><h3>Behaves like a Leaf dev</h3><p>Picks the entry point that fits (Basic, Web App, API), reaches for <code>leaf install auth</code> instead of writing JWT by hand, and keeps your project's names.</p></div>
+      <div class="card"><h3>Reads the docs on demand</h3><p>Sixteen reference files, one per area. The agent loads routing or auth or mail when it needs it, so your context stays small and the answers stay right.</p></div>
+      <div class="card"><h3>Proven by a running example</h3><p>Register, login and a protected route in one file. CI runs it on every push, so what the skill teaches is something that actually works.</p></div>
+    </div>
+  </div>
+
+  <section id="example">
+    <div class="wrap">
+      <h2>Say it in plain words. Get a Leaf app.</h2>
+      <p class="intro">This is the prompt, and this is what a Leaf developer (or an agent with the skill) writes for it. SQLite, tokens, validation, 65 lines.</p>
+      <div class="split">
+<pre><code><span class="c">// index.php</span>
+db()->connect([<span class="s">'dbtype'</span> => <span class="s">'sqlite'</span>, <span class="s">'dbname'</span> => __DIR__ . <span class="s">'/app.sqlite'</span>]);
+
+auth()->config(<span class="s">'token.secret'</span>, getenv(<span class="s">'AUTH_TOKEN_SECRET'</span>));
+auth()->config(<span class="s">'unique'</span>, [<span class="s">'email'</span>]);
+
+auth()->middleware(<span class="s">'auth.required'</span>, <span class="k">function</span> () {
+    response()->exit([<span class="s">'error'</span> => <span class="s">'You need to be logged in'</span>], 401);
+});
+
+app()->post(<span class="s">'/register'</span>, <span class="k">function</span> () {
+    $data = request()->validate([
+        <span class="s">'name'</span> => <span class="s">'string'</span>, <span class="s">'email'</span> => <span class="s">'email'</span>, <span class="s">'password'</span> => <span class="s">'min:8'</span>,
+    ]);
+
+    <span class="k">if</span> (!$data) <span class="k">return</span> response()->exit(request()->errors(), 400);
+    <span class="k">if</span> (!auth()->register($data)) <span class="k">return</span> response()->exit(auth()->errors(), 400);
+
+    response()->json(auth()->data(), 201);
+});
+
+app()->post(<span class="s">'/login'</span>, <span class="k">function</span> () {
+    $data = request()->validate([<span class="s">'email'</span> => <span class="s">'email'</span>, <span class="s">'password'</span> => <span class="s">'string'</span>]);
+
+    <span class="k">if</span> (!$data) <span class="k">return</span> response()->exit(request()->errors(), 400);
+    <span class="k">if</span> (!auth()->login($data)) <span class="k">return</span> response()->exit(auth()->errors(), 401);
+
+    response()->json(auth()->data());
+});
+
+app()->get(<span class="s">'/me'</span>, [<span class="s">'middleware'</span> => <span class="s">'auth.required'</span>, <span class="k">function</span> () {
+    response()->json(auth()->user()->get());
+}]);
+
+app()->run();</code></pre>
+        <div>
+          <div class="prompt">
+            <div class="label">The prompt</div>
+            <blockquote>Build me a Leaf 5 API with register, login and a protected /me route. SQLite, tokens, validation on the inputs.</blockquote>
+            <p>With the skill loaded, the agent lands on <code>auth()->register()</code>, <code>auth()->login()</code> and a named middleware. If it starts writing its own JWT code or a users migration, the skill is not loaded.</p>
+          </div>
+          <p style="margin:18px 0 0;color:var(--ink-2);font-size:15px">Full file, smoke test and CI: <a href="https://github.com/leafsphp/skill/tree/main/examples/auth-api">examples/auth-api</a>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="install">
+    <div class="wrap">
+      <h2>Install</h2>
+      <p class="intro">The skills CLI is the quick way. Or clone the repo into the folder your agent reads skills from.</p>
+      <div class="steps" style="margin-bottom:28px">
+        <div class="card step"><div class="n">01</div><h3>Add the skill</h3><p><code>npx skills add leafsphp/skill</code>, or <code>git clone https://github.com/leafsphp/skill ~/.claude/skills/leaf</code>.</p></div>
+        <div class="card step"><div class="n">02</div><h3>Open your agent</h3><p>It triggers on its own whenever Leaf 5, <code>leaf install</code>, <code>leaf up</code> or a <code>.leaf/CONTEXT.md</code> comes up.</p></div>
+        <div class="card step"><div class="n">03</div><h3>Ask for the app</h3><p>Describe what you want. Run <code>php -S localhost:5500 index.php</code>. That is the whole loop.</p></div>
+      </div>
+      <table>
+        <thead><tr><th>Agent</th><th>Personal</th><th>Project</th></tr></thead>
+        <tbody>
+          <tr><td>Claude Code</td><td><code>~/.claude/skills/leaf/</code></td><td><code>.claude/skills/leaf/</code></td></tr>
+          <tr><td>Codex</td><td><code>~/.codex/skills/leaf/</code></td><td><code>.codex/skills/leaf/</code></td></tr>
+          <tr><td>Gemini CLI</td><td><code>~/.gemini/skills/leaf/</code></td><td><code>.gemini/skills/leaf/</code></td></tr>
+          <tr><td>Cursor</td><td><code>~/.cursor/skills/leaf/</code></td><td><code>.cursor/skills/leaf/</code></td></tr>
+        </tbody>
+      </table>
+      <p class="sub">Anything else: tell your assistant to fetch <a href="https://leafphp.dev/ai/SKILL.md">leafphp.dev/ai/SKILL.md</a> before it starts. New Leaf MVC apps already ship an <code>AGENTS.md</code> that points here.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>Part of <a href="https://leafphp.dev">Leaf</a>, the PHP framework for makers. Read <a href="https://leafphp.dev/docs/ai">AI in Leaf</a> for the whole picture.</div>
+    <div><a href="https://github.com/leafsphp/skill">GitHub</a> · <a href="https://leafphp.dev/llms.txt">llms.txt</a> · <a href="https://github.com/leafsphp/kata-skill">kata-skill</a></div>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,7 @@
+{
+    "require": {
+        "leafs/leaf": "^5.0",
+        "leafs/auth": "^5.1",
+        "leafs/db": "^5.1"
+    }
+}
