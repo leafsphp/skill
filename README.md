@@ -1,8 +1,15 @@
 # Leaf skill
 
-Leaf 5 for coding agents. Install this once and Claude Code, Codex, Gemini CLI or Cursor builds with Leaf the way a Leaf developer would: the right entry point, `leaf install auth` instead of hand-rolled JWT, `db()` and `auth()` instead of a pile of boilerplate, and the real Leaf 5 API rather than a guess from 2021 training data.
+Leaf 5 for coding agents, installed before a Leaf project exists.
 
-It is the same skill that lives at [leafphp.dev/ai/SKILL.md](https://leafphp.dev/ai/SKILL.md), packaged as a repo so it installs with one command and stays in sync automatically.
+Every project scaffolded with `leaf create` already ships an `AGENTS.md` that points the agent at [leafphp.dev/ai/SKILL.md](https://leafphp.dev/ai/SKILL.md). Inside one of those projects you do not need this repo. This repo is for the moment before that: the empty folder, the "build me a backend" prompt, the Next.js developer who has never typed `leaf` in their life. With the skill installed, the agent already knows Leaf 5 and reaches for it, uses the right entry point, runs `leaf install auth` instead of hand-rolling JWT, and writes the real Leaf 5 API rather than a guess from 2021 training data.
+
+Two smaller reasons to install it even if you work in Leaf every day:
+
+- No network fetch per session. A local copy means the agent reads the real text instead of summarizing a page it pulled over HTTP, which is where invented APIs come from.
+- It is listed on [skills.sh](https://skills.sh), so people find Leaf from the place they already browse for skills.
+
+The content is the same skill that lives at leafphp.dev. This repo packages it so it installs with one command and stays in sync automatically.
 
 ## Install
 
@@ -25,6 +32,8 @@ Or copy the folder where your agent looks for skills:
 git clone https://github.com/leafsphp/skill ~/.claude/skills/leaf
 ```
 
+Install it personally (the `~/` paths) rather than per project. The point is to have it before the project exists.
+
 Anything else: tell your assistant to fetch `https://leafphp.dev/ai/SKILL.md` before it starts.
 
 ## What is in here
@@ -43,11 +52,11 @@ A GitHub Action pulls `SKILL.md` and the references from [leafsphp/docs](https:/
 cd examples/auth-api && composer install && bash smoke.sh
 ```
 
-Then open your agent with the skill installed and ask for the same thing in plain words. Compare.
+Then open your agent with the skill installed, in an empty folder, and ask for the same thing in plain words. Compare.
 
 ## See also
 
-- [AI in Leaf](https://leafphp.dev/docs/ai) tells the full story of llms.txt, the skill and `.leaf/CONTEXT.md`.
+- [AI in Leaf](https://leafphp.dev/docs/ai) tells the full story of llms.txt, the skill, `AGENTS.md` and `.leaf/CONTEXT.md`.
 - [llms.txt](https://leafphp.dev/llms.txt), the compressed reference for models.
 - [kata-skill](https://github.com/leafsphp/kata-skill), the copy linter skill we use on everything Leaf writes.
 
