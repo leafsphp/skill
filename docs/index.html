@@ -11,60 +11,69 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Inter:wght@400;450;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=DM+Mono:wght@400;500&family=Inter:wght@400;450;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #fdfbf7; --panel: #FFFFFF; --panel-2: #f7f3ec; --line: #E8E0D8;
-    --ink: #1B1612; --ink-2: #4A423B; --ink-3: #857A70;
-    --accent: #F5B731; --accent-deep: #D4652E; --accent-soft: #FFF4EC;
-    --code-bg: #0a0807; --code-ink: #F3EAD9; --code-dim: #9B8E80; --code-key: #FFB27A; --code-str: #C9E8A9; --code-fn: #8FD3FF;
+    --bg: #fafafa; --panel: #ffffff; --panel-2: #fff4ec; --line: #e5e5e5;
+    --ink: #171717; --ink-2: #404040; --ink-3: #737373;
+    --brand: #D4652E; --brand-2: #C05424; --brand-3: #F5B731; --brand-soft: #fff4ec; --brand-line: #e8873a47;
+    --code-bg: #0a0a0a; --code-ink: #F3EAD9; --code-dim: #9B8E80; --code-key: #f09a55; --code-str: #C9E8A9; --code-fn: #89ddff;
+    --sans: Inter, ui-sans-serif, system-ui, sans-serif;
+    --display: "Bricolage Grotesque", Inter, sans-serif;
+    --mono: "DM Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
   }
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
-  body { margin: 0; background: var(--bg); color: var(--ink); font: 450 17px/1.6 Inter, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
-  a { color: var(--accent-deep); text-decoration: none; }
-  a:hover { text-decoration: underline; }
-  h1, h2, h3 { font-family: "Bricolage Grotesque", Inter, sans-serif; font-weight: 600; letter-spacing: -0.02em; margin: 0; }
-  code, pre, kbd { font-family: "DM Mono", ui-monospace, monospace; }
-  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
-  header { padding: 22px 0; border-bottom: 1px solid var(--line); }
-  header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-  .brand { display: flex; align-items: center; gap: 10px; font-family: "Bricolage Grotesque", sans-serif; font-weight: 700; color: var(--ink); font-size: 18px; }
+  body { margin: 0; font-family: var(--sans); font-weight: 450; color: var(--ink); background: var(--bg); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  a { color: var(--brand); text-decoration: none; } a:hover { color: var(--brand-2); }
+  code { font-family: var(--mono); font-size: 0.92em; background: #f0f0f0; padding: 2px 6px; border-radius: 6px; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+  header { position: sticky; top: 0; z-index: 10; background: rgba(250,250,250,.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+  header .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .brand { font-family: var(--display); font-weight: 700; font-size: 18px; color: var(--ink); letter-spacing: -0.01em; }
   .brand span { color: var(--ink-3); font-weight: 500; }
-  nav a { color: var(--ink-2); margin-left: 22px; font-size: 15px; }
-  .hero { padding: 88px 0 56px; }
-  .eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent-deep); background: var(--accent-soft); border: 1px solid #F7DCC6; padding: 6px 12px; border-radius: 999px; }
-  h1 { font-size: clamp(40px, 6vw, 72px); line-height: 1.02; margin: 22px 0 18px; max-width: 860px; }
-  h1 em { font-style: normal; color: var(--accent-deep); }
-  .lede { font-size: 20px; color: var(--ink-2); max-width: 680px; margin: 0 0 34px; }
-  .cmd { display: inline-flex; align-items: center; gap: 14px; background: var(--code-bg); color: var(--code-ink); padding: 16px 20px; border-radius: 14px; font-size: 17px; box-shadow: 0 18px 40px -22px rgba(27,22,18,.45); }
+  nav a { margin-left: 24px; font-size: 14px; font-weight: 500; color: var(--ink-2); } nav a:hover { color: var(--ink); }
+  main { position: relative; overflow: hidden; }
+  .hero { position: relative; padding: 96px 24px 72px; }
+  .hero::before { content: ""; position: absolute; inset: -120px -200px auto -200px; height: 640px; background: radial-gradient(50% 50% at 50% 50%, #e8873a2e 0%, transparent 70%); pointer-events: none; z-index: -1; }
+  .eyebrow { display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-2); background: #fff; border: 1px solid var(--line); padding: 6px 12px; border-radius: 999px; }
+  .eyebrow::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--brand); }
+  h1 { font-family: var(--display); font-size: clamp(44px, 7vw, 84px); line-height: 1.0; letter-spacing: -0.04em; font-weight: 800; margin: 22px 0 24px; max-width: 14ch; }
+  h1 em { font-style: normal; background: linear-gradient(90deg, var(--brand-3) 0%, #e8873a 45%, var(--brand) 75%, #b8342a 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .lede { font-size: 19px; line-height: 1.65; color: var(--ink-2); max-width: 600px; margin: 0 0 32px; }
+  h2 { font-family: var(--display); font-size: clamp(30px, 4vw, 40px); line-height: 1.1; letter-spacing: -0.03em; font-weight: 700; margin: 0 0 14px; }
+  h3 { font-family: var(--display); font-size: 20px; letter-spacing: -0.02em; font-weight: 600; margin: 10px 0 8px; }
+  .label { font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 18px; }
+  .label::before { content: "// "; color: var(--brand); }
+  .sub { color: var(--ink-2); font-size: 17px; max-width: 620px; }
+  section.wrap { padding: 72px 24px; border-top: 1px solid var(--line); }
+  .cmd { display: flex; align-items: center; gap: 12px; font-family: var(--mono); font-size: 16px; background: var(--code-bg); color: var(--code-ink); padding: 18px 22px; border-radius: 12px; margin: 24px 0 8px; max-width: 560px; }
   .cmd .dollar { color: var(--code-dim); }
-  .cmd button { background: #2A231E; color: var(--code-ink); border: 1px solid #3A312A; padding: 6px 12px; border-radius: 8px; font: 500 13px Inter, sans-serif; cursor: pointer; }
-  .cmd button:hover { background: #352C25; }
-  .sub { margin: 14px 0 0; color: var(--ink-3); font-size: 15px; }
-  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 56px; }
-  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 18px; padding: 24px; }
-  .card h3 { font-size: 20px; margin-bottom: 8px; }
-  .card p { margin: 0; color: var(--ink-2); font-size: 16px; }
-  section { padding: 64px 0; border-top: 1px solid var(--line); }
-  h2 { font-size: clamp(28px, 3.6vw, 40px); margin-bottom: 10px; }
-  .intro { color: var(--ink-2); max-width: 680px; margin: 0 0 28px; font-size: 18px; }
-  .split { display: grid; grid-template-columns: 1.1fr .9fr; gap: 28px; align-items: start; }
-  pre { margin: 0; background: var(--code-bg); color: var(--code-ink); padding: 22px 24px; border-radius: 16px; overflow: auto; font-size: 14px; line-height: 1.6; }
-  .k { color: var(--code-key); } .s { color: var(--code-str); } .f { color: var(--code-fn); } .c { color: var(--code-dim); }
-  .prompt { background: var(--panel-2); border: 1px solid var(--line); border-radius: 16px; padding: 22px 24px; }
-  .prompt .label { font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 10px; }
-  .prompt blockquote { margin: 0 0 16px; font-size: 18px; line-height: 1.5; color: var(--ink); font-family: "Bricolage Grotesque", sans-serif; font-weight: 500; }
-  .prompt p { margin: 0; color: var(--ink-2); font-size: 15px; }
-  table { width: 100%; border-collapse: collapse; background: var(--panel); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; font-size: 15px; }
-  th, td { text-align: left; padding: 14px 18px; border-bottom: 1px solid var(--line); }
-  th { background: var(--panel-2); font-weight: 600; color: var(--ink-2); font-size: 13px; letter-spacing: .04em; text-transform: uppercase; }
-  tr:last-child td { border-bottom: 0; }
-  td code { background: var(--panel-2); padding: 2px 7px; border-radius: 6px; font-size: 13.5px; }
-  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-  .step .n { font-family: "DM Mono", monospace; color: var(--accent-deep); font-size: 13px; margin-bottom: 8px; }
-  footer { padding: 40px 0 60px; border-top: 1px solid var(--line); color: var(--ink-3); font-size: 15px; }
-  footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
-  @media (max-width: 820px) { .grid, .split, .steps { grid-template-columns: 1fr; } .hero { padding: 56px 0 40px; } nav a { margin-left: 14px; } }
+  .cmd code { background: none; padding: 0; color: var(--code-ink); font-size: inherit; flex: 1; user-select: all; }
+  .cmd button { font-family: var(--mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--code-key); background: transparent; border: 1px solid #e8873a47; border-radius: 6px; padding: 6px 10px; cursor: pointer; } .cmd button:hover { background: #e8873a1f; }
+  .cmd .k { color: var(--code-key); }
+  .btn, a.btn { display: inline-flex; align-items: center; gap: 8px; background: var(--brand); color: #fff; font-weight: 600; font-size: 15px; padding: 12px 20px; border-radius: 6px; } .btn:hover { background: var(--brand-2); color: #fff; }
+  .btn.ghost { background: transparent; color: var(--brand); padding-left: 0; }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--line); background: var(--line); gap: 1px; margin-top: 28px; }
+  .card { background: var(--panel); padding: 28px 24px; }
+  .card p { margin: 0; color: var(--ink-2); font-size: 15px; }
+  .card .n, .steps .n { font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em; color: var(--ink-3); }
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); margin-top: 24px; }
+  .steps .card { padding: 28px 24px; }
+  .split { display: grid; grid-template-columns: 1.1fr 1fr; gap: 40px; align-items: start; }
+  pre { margin: 0; font-family: var(--mono); font-size: 13px; line-height: 1.6; background: var(--code-bg); color: var(--code-ink); padding: 22px 24px; border-radius: 12px; overflow-x: auto; }
+  pre code { background: none; padding: 0; color: inherit; font-size: inherit; }
+  pre .k { color: var(--code-key); } pre .s { color: var(--code-str); } pre .prompt { color: var(--code-fn); }
+  .intro p { color: var(--ink-2); }
+  table { border-collapse: collapse; width: 100%; max-width: 640px; margin: 28px 0; font-size: 15px; }
+  th { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); text-align: left; font-weight: 500; padding: 10px 12px; border-bottom: 1px solid var(--line); }
+  td { padding: 10px 12px; border-bottom: 1px solid var(--line); }
+  td code { font-size: 13px; }
+  footer { border-top: 1px solid var(--line); padding: 36px 24px; color: var(--ink-3); font-size: 14px; }
+  footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+  @media (max-width: 820px) { .grid, .steps, .split { grid-template-columns: 1fr; } .hero { padding: 56px 24px 40px; } nav a { margin-left: 14px; } h1 { max-width: none; } }
 </style>
 </head>
 <body>
@@ -89,9 +98,9 @@
     <p class="sub">Synced from <a href="https://leafphp.dev/ai/SKILL.md">leafphp.dev/ai</a> every morning. MIT.</p>
 
     <div class="grid">
-      <div class="card"><h3>Behaves like a Leaf dev</h3><p>Picks the entry point that fits (Basic, Web App, API), reaches for <code>leaf install auth</code> instead of writing JWT by hand, and keeps your project's names.</p></div>
-      <div class="card"><h3>Reads the docs on demand</h3><p>Sixteen reference files, one per area. The agent loads routing or auth or mail when it needs it, so your context stays small and the answers stay right.</p></div>
-      <div class="card"><h3>Proven by a running example</h3><p>Register, login and a protected route in one file. CI runs it on every push, so what the skill teaches is something that actually works.</p></div>
+      <div class="card"><div class="n">01 · BEHAVIOUR</div><h3>Behaves like a Leaf dev</h3><p>Picks the entry point that fits (Basic, Web App, API), reaches for <code>leaf install auth</code> instead of writing JWT by hand, and keeps your project's names.</p></div>
+      <div class="card"><div class="n">02 · REFERENCES</div><h3>Reads the docs on demand</h3><p>Sixteen reference files, one per area. The agent loads routing or auth or mail when it needs it, so your context stays small and the answers stay right.</p></div>
+      <div class="card"><div class="n">03 · PROOF</div><h3>Proven by a running example</h3><p>Register, login and a protected route in one file. CI runs it on every push, so what the skill teaches is something that actually works.</p></div>
     </div>
   </div>
 
